@@ -20,7 +20,7 @@ file system for bootable images.
 * **Reference**: `registry.dpeckett.dev/debian:bookworm-ultraslim-bootable`
 * **Architectures**: amd64, arm64
 
-## Debian Trixie
+## Debian Trixie (Testing)
 
 Testing images for the next Debian release. The main reason for publishing these
 is that Trixie will be the first release to support the riscv64 architecture.
