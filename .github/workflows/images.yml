@@ -1,0 +1,43 @@
+name: Build and Push Images
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ v* ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Install Debco
+      run: |
+        curl -fsL -o /etc/apt/keyrings/apt-dpeckett-dev-keyring.asc https://apt.dpeckett.dev/signing_key.asc \
+        && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/apt-dpeckett-dev-keyring.asc] http://apt.dpeckett.dev bookworm stable" > /etc/apt/sources.list.d/apt-dpeckett-dev.list \
+        && apt update \
+        && apt install -y debco
+
+    - name: Check Out Repo
+      uses: actions/checkout@v3
+
+    - name: Build Bookworm Images
+      run: |
+        for recipe in $(find . -name 'bookworm*.yaml'); do
+          base_name=$(basename "$recipe" .yaml)
+          debco build -p linux/amd64,linux/arm64 -o "${base_name}.tar" -f "$recipe"
+        done
+
+    - name: Build Trixie Images
+      run: |
+        for recipe in $(find . -name 'trixie*.yaml'); do
+          base_name=$(basename "$recipe" .yaml)
+          debco build -p linux/amd64,linux/arm64,linux/riscv64 -o "${base_name}.tar" -f "$recipe"
+        done
