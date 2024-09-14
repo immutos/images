@@ -76,12 +76,13 @@ jobs:
     # The version in apt is too old, so we need to build from source.
     - name: Install Skopeo
       run: |
+        sudo apt update
+        sudo apt install -y libgpgme-dev libassuan-dev libbtrfs-dev pkg-config
         VERSION=1.16.1
         curl -fsL https://github.com/containers/skopeo/archive/refs/tags/v${VERSION}.tar.gz | tar -xzf -
         cd skopeo-${VERSION}
-        sudo apt install -y libgpgme-dev libassuan-dev libbtrfs-dev pkg-config
         DISABLE_DOCS=1 make
-        sudo make install
+        sudo DISABLE_DOCS=1 make install
 
     - name: Download Built Images
       uses: actions/download-artifact@v4
@@ -103,7 +104,7 @@ jobs:
       run: |
         for image in $(find . -name '*.tar'); do
           skopeo inspect "oci-archive:${image}" | jq -j '.Digest' >> digests.txt
-          echo "  registry.dpeckett.dev/debian:$(basename "$image" .tar)" >> digests.txt
+          echo " registry.dpeckett.dev/debian:$(basename "$image" .tar)" >> digests.txt
         done
 
     - name: Publish Digests
