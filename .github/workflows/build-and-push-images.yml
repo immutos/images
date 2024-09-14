@@ -79,6 +79,7 @@ jobs:
         VERSION=1.16.1
         curl -fsL https://github.com/containers/skopeo/archive/refs/tags/v${VERSION}.tar.gz | tar -xzf -
         cd skopeo-${VERSION}
+        sudo apt install -y libgpgme-dev libassuan-dev libbtrfs-dev pkg-config
         DISABLE_DOCS=1 make
         sudo make install
 
