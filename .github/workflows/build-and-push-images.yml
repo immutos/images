@@ -18,12 +18,20 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
+    - name: Cache Downloaded Packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/debco
+        key: ${{ runner.os }}-debco-cache
+        restore-keys: |
+          ${{ runner.os }}-debco-cache
+
     - name: Install Debco
       run: |
-        curl -fsL -o /etc/apt/keyrings/apt-dpeckett-dev-keyring.asc https://apt.dpeckett.dev/signing_key.asc \
-        && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/apt-dpeckett-dev-keyring.asc] http://apt.dpeckett.dev bookworm stable" > /etc/apt/sources.list.d/apt-dpeckett-dev.list \
-        && apt update \
-        && apt install -y debco
+        sudo curl -fsL -o /etc/apt/keyrings/apt-dpeckett-dev-keyring.asc https://apt.dpeckett.dev/signing_key.asc \
+        && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/apt-dpeckett-dev-keyring.asc] http://apt.dpeckett.dev bookworm stable" | sudo tee /etc/apt/sources.list.d/apt-dpeckett-dev.list \
+        && sudo apt update \
+        && sudo apt install -y debco
 
     - name: Check Out Repo
       uses: actions/checkout@v3
