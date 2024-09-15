@@ -67,7 +67,7 @@ container:
   user: nonroot
   workingDir: /home/nonroot
   cmd:
-    - /usr/bin/sh
+    - /bin/sh
   labels:
     org.opencontainers.image.title: "Debian Bookworm UltraSlim"
     org.opencontainers.image.description: "A very minimal Debian Bookworm image"

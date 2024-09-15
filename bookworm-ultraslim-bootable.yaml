@@ -73,7 +73,7 @@ container:
   user: root
   workingDir: /root
   cmd:
-    - /usr/bin/sh
+    - /sbin/init
   labels:
     org.opencontainers.image.title: "Debian Bookworm UltraSlim Bootable"
     org.opencontainers.image.description: "A very minimal bootable Debian Bookworm image"
