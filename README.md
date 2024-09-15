@@ -2,6 +2,7 @@
 
 Pipeline for building immutos Debian images.
 
+
 ## Debian Bookworm
 
 ### Debian Bookworm UltraSlim
@@ -41,3 +42,19 @@ file system for bootable images.
 * **Reference**: `registry.dpeckett.dev/debian:trixie-ultraslim-bootable`
 * **Architectures**: amd64, arm64, riscv64
 
+## Usage
+
+### Runnning bootable images
+
+To run a bootable image, without a virtual machine, you can use the following:
+
+```shell
+docker run --rm -it \
+  --cap-add SYS_ADMIN \
+  --security-opt apparmor=unconfined \
+  --security-opt seccomp=unconfined \
+  --tmpfs /run --tmpfs /run/lock \
+  --cgroupns=host \
+  -v /sys/fs/cgroup:/sys/fs/cgroup \
+  registry.dpeckett.dev/debian:bookworm-ultraslim-bootable
+```
