@@ -46,6 +46,8 @@ file system for bootable images.
 
 ### Runnning bootable images
 
+#### Docker
+
 To run a bootable image, without a virtual machine, you can use the following:
 
 ```shell

@@ -42,6 +42,7 @@ packages:
     - findutils
     - grep
     - init-system-helpers
+    - iputils-ping
     - libc6
     - libc-bin
     - libgcc-s1
