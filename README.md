@@ -2,7 +2,6 @@
 
 Pipeline for building immutos Debian images.
 
-
 ## Debian Bookworm
 
 ### Debian Bookworm UltraSlim
