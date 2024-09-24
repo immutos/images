@@ -11,11 +11,11 @@ options:
 
 # Where to get the packages from.
 sources:
-  - url: https://apt.dpeckett.dev
-    signedBy: https://apt.dpeckett.dev/signing_key.asc
-    distribution: bookworm
+  - url: https://apt.immutos.com
+    signedBy: https://apt.immutos.com/signing_key.asc
+    distribution: trixie
     components:
-      - stable
+      - testing
   - url: https://deb.debian.org/debian
     signedBy: https://ftp-master.debian.org/keys/archive-key-12.asc
     distribution: trixie

@@ -30,8 +30,8 @@ jobs:
 
     - name: Install Debco
       run: |
-        sudo curl -fsL -o /etc/apt/keyrings/apt-dpeckett-dev-keyring.asc https://apt.dpeckett.dev/signing_key.asc \
-        && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/apt-dpeckett-dev-keyring.asc] http://apt.dpeckett.dev bookworm stable" | sudo tee /etc/apt/sources.list.d/apt-dpeckett-dev.list \
+        sudo curl -fsL -o /etc/apt/keyrings/apt-dpeckett-dev-keyring.asc https://apt.immutos.com/signing_key.asc \
+        && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/apt-dpeckett-dev-keyring.asc] http://apt.immutos.com bookworm stable" | sudo tee /etc/apt/sources.list.d/apt-dpeckett-dev.list \
         && sudo apt update \
         && sudo apt install -y debco
 

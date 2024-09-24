@@ -11,8 +11,8 @@ options:
 
 # Where to get the packages from.
 sources:
-  - url: https://apt.dpeckett.dev
-    signedBy: https://apt.dpeckett.dev/signing_key.asc
+  - url: https://apt.immutos.com
+    signedBy: https://apt.immutos.com/signing_key.asc
     distribution: bookworm
     components:
       - stable
@@ -48,6 +48,7 @@ packages:
     - libgcc-s1
     - libgomp1
     - libstdc++6
+    - linux-image-6.1.106-qemu-immutos
     - login
     - matchstick
     - netbase
