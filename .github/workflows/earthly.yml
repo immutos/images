@@ -28,7 +28,7 @@ jobs:
     - name: Save Images
       uses: actions/upload-artifact@v4
       with:
-        name: built-images
+        name: images
         path: |
           dist/*.tar
           dist/digests.txt
@@ -42,13 +42,15 @@ jobs:
     - name: Check Out Repo
       uses: actions/checkout@v3
 
-    - name: Download Built Images
+    - name: Download Images
       uses: actions/download-artifact@v4
       with:
-        name: built-images
+        name: images
         path: dist
 
     - name: Push Images
+      env: 
+        EARTHLY_SECRETS: "registry_password=${{ secrets.REGISTRY_PASSWORD }}"
       run: earthly +push
 
     - name: Release Digests
