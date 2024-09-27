@@ -22,7 +22,7 @@ jobs:
     - name: Check Out Repo
       uses: actions/checkout@v3
 
-    - name: build
+    - name: Build
       run: earthly -P +build
     
     - name: Save Images
