@@ -1,6 +1,7 @@
 VERSION 0.8
 FROM debian:bookworm
 WORKDIR /workspace
+ENV DO_NOT_TRACK=1
 
 build:
   FROM +tools
