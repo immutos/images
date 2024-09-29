@@ -38,6 +38,7 @@ packages:
     - grep
     - init-system-helpers
     - iputils-ping
+    - kmod
     - libc6
     - libc-bin
     - libgcc-s1
