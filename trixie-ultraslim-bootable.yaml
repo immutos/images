@@ -37,14 +37,13 @@ packages:
     - findutils
     - grep
     - init-system-helpers
-    - iputils-ping
     - kmod
     - libc6
     - libc-bin
     - libgcc-s1
     - libgomp1
     - libstdc++6
-    - linux-image-6.10.9-qemu-immutos
+    - linux-image-immutos-qemu
     - login
     - matchstick
     - netbase

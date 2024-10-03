@@ -53,10 +53,17 @@ jobs:
         EARTHLY_SECRETS: "registry_password=${{ secrets.REGISTRY_PASSWORD }}"
       run: earthly +push
 
+    - name: Generate Release Notes
+      run: |
+        echo -e '## Digests\n\n```' > RELEASE.txt
+        cat dist/digests.txt >> RELEASE.txt
+        echo -e '```\n' >> RELEASE.txt
+
     - name: Release Digests
       uses: softprops/action-gh-release@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
+        body_path: RELEASE.txt
         files: |
           dist/digests.txt

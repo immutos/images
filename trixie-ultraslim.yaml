@@ -36,7 +36,6 @@ packages:
     - dpkg
     - findutils
     - grep
-    - iputils-ping
     - libc6
     - libc-bin
     - libgcc-s1
